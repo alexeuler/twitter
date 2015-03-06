@@ -12,19 +12,20 @@ module Twitter
   end
 
   def self.parse_flitter(html_text)
-    result = ''
+    result = []
     html_doc = Nokogiri::HTML(html_text)
     rows= html_doc.css('div.userRow')
     rows.each do |row|
       status = row.css('button.Follow').first
-      status_content = status.content.to_s
-      followed = status_content.include?('Unfollow')
-      unless followed
-        name = row.css('a.screen_name').first.content.to_s
-        result << name
+      if status
+        name_node = row.css('a.screen_name')
+        if name_node.count > 0
+          name=name_node.first.content.to_s
+          result << name
+        end
       end
     end
-    result
+    result.join(' ')
   end
 
   def self.follow(users)
@@ -33,7 +34,7 @@ module Twitter
     users = [users] unless users.is_a? Array
     users.each do |user|
       user.gsub('@', '')
-      result = $twitter.follow!(user)# unless followings.include?(user)
+      result = $twitter.follow!(user) # unless followings.include?(user)
       puts result
     end
   end

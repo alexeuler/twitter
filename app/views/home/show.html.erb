@@ -1,4 +1,4 @@
-<%= form_for :data, url: '/api/follow', remote: true, :html => {:'data-type' => 'json'} do |f| %>
+<%= form_for :data, url: '/api/follow', remote: true, :html => {:class => 'follow', :'data-type' => 'json'} do |f| %>
     <h1>Follow users</h1>
     <%= f.text_area :users, rows: 20, style: 'width:100%' %>
     <br/>
@@ -7,11 +7,9 @@
 <% end %>
 
 
-<%= form_for :data, url: '/api/parse', :html => { :multipart => true}, :remote => true do |f| %>
-    <div class="field">
-      <%= f.label :file %>
-      <%= f.file_field :file %>
-    </div>
+<%= form_for :data, url: '/api/parse', :html => {:class => 'parse',  :multipart => true}, :remote => true do |f| %>
+    <h1>Populate from flitter</h1>
+    <%= f.file_field :file %>
     <div class="actions">
       <%= f.submit %>
     </div>
