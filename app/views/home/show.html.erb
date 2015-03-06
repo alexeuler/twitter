@@ -1,2 +1,10 @@
+<%= form_for :data, url:'/api/follow',remote: true, :html => {:'data-type' => 'json'} do |f| %>
+    <h1>Follow users</h1>
+    <%= f.text_area :users, rows:20, style:'width:100%' %>
+    <br/>
+    <%= f.submit %>
+    <br/>
+<% end %>
+
 <h1>Home#show</h1>
 <p>Find me in app/views/home/show.html.erb</p>
