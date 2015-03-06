@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   post 'api/follow'
+  post 'api/parse'
   get 'home/show'
 
   # The priority is based upon order of creation: first created -> highest priority.

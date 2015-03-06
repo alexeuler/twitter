@@ -11,7 +11,7 @@ module Twitter
     # end
   end
 
-  def parse_flitter(html_text)
+  def self.parse_flitter(html_text)
     result = ''
     html_doc = Nokogiri::HTML(html_text)
     rows= html_doc.css('div.userRow')
@@ -33,7 +33,8 @@ module Twitter
     users = [users] unless users.is_a? Array
     users.each do |user|
       user.gsub('@', '')
-      $twitter.follow!(user)# unless followings.include?(user)
+      result = $twitter.follow!(user)# unless followings.include?(user)
+      puts result
     end
   end
 end

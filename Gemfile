@@ -45,3 +45,4 @@ end
 
 gem 'twitter'
 gem 'nokogiri'
+gem 'remotipart'

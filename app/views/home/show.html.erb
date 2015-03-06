@@ -1,10 +1,30 @@
-<%= form_for :data, url:'/api/follow',remote: true, :html => {:'data-type' => 'json'} do |f| %>
+<%= form_for :data, url: '/api/follow', remote: true, :html => {:'data-type' => 'json'} do |f| %>
     <h1>Follow users</h1>
-    <%= f.text_area :users, rows:20, style:'width:100%' %>
+    <%= f.text_area :users, rows: 20, style: 'width:100%' %>
     <br/>
     <%= f.submit %>
     <br/>
 <% end %>
 
-<h1>Home#show</h1>
-<p>Find me in app/views/home/show.html.erb</p>
+
+<%= form_for :data, url: '/api/parse', :html => { :multipart => true}, :remote => true do |f| %>
+    <div class="field">
+      <%= f.label :file %>
+      <%= f.file_field :file %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
+
+<!--<form accept-charset="UTF-8" action="/api/parse" data-remote="true" data-type="html" enctype="multipart/form-data" method="post">-->
+  <!--<div style="display:none">-->
+    <!--<input name="utf8" type="hidden" value="✓">-->
+  <!--</div>-->
+
+  <!--<div class="field">-->
+    <!--<label for="data">Upload image</label><br>-->
+    <!--<input id="data" name="data" type="file">-->
+  <!--</div>-->
+  <!--<input class="btn btn-primary add-button" id="add_button" name="commit" type="submit" value="Add">-->
+<!--</form>-->
