@@ -2,7 +2,7 @@
     <h1>Follow users</h1>
     <%= f.text_area :users, rows: 20, style: 'width:100%' %>
     <br/>
-    <%= f.submit %>
+    <%= f.submit 'Follow' %>
     <br/>
 <% end %>
 
@@ -11,18 +11,6 @@
     <h1>Populate from flitter</h1>
     <%= f.file_field :file %>
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit 'Populate' %>
     </div>
 <% end %>
-
-<!--<form accept-charset="UTF-8" action="/api/parse" data-remote="true" data-type="html" enctype="multipart/form-data" method="post">-->
-  <!--<div style="display:none">-->
-    <!--<input name="utf8" type="hidden" value="✓">-->
-  <!--</div>-->
-
-  <!--<div class="field">-->
-    <!--<label for="data">Upload image</label><br>-->
-    <!--<input id="data" name="data" type="file">-->
-  <!--</div>-->
-  <!--<input class="btn btn-primary add-button" id="add_button" name="commit" type="submit" value="Add">-->
-<!--</form>-->

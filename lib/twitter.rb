@@ -25,7 +25,7 @@ module Twitter
         end
       end
     end
-    result.join(' ')
+    result
   end
 
   def self.follow(users)

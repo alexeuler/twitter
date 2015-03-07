@@ -16,7 +16,6 @@ class ApiController < ApplicationController
     file = params[:data][:file]
     contents = file.read
     users = Twitter::parse_flitter contents
-    puts users
-    render json: 'ok'
+    render json: users
   end
 end

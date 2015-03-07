@@ -2,9 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-ready = ->
-
-->
-  ready()
-  $(document).on('page:load', ready)
-
+$ ->
+  $('body').on 'ajax:complete', '.parse', (e, xhr, result, data)->
+    users = JSON.parse(xhr.responseText)
+    text = users.join(' ')
+    $('#data_users').val(text)
