@@ -37,7 +37,7 @@ module Twitter
       begin
         $twitter.follow!(user) # unless followings.include?(user)
       rescue Exception => e
-        logger.error "On #{user || 'Nil user'} raised #{e.message}"
+        Rails.logger.error "On #{user || 'Nil user'} raised #{e.message}"
       end
     end
   end
