@@ -46,7 +46,7 @@ end
 gem 'twitter'
 gem 'nokogiri'
 gem 'remotipart'
-gem 'capistrano',  '~> 3.1'
-gem 'capistrano-rails', '~> 1.1'
-gem 'rvm-capistrano'
-
+gem 'capistrano'
+gem 'capistrano-rails'
+gem 'capistrano-rvm'
+gem 'thin'
