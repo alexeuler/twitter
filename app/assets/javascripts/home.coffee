@@ -5,5 +5,5 @@
 $ ->
   $('body').on 'ajax:complete', '.parse', (e, xhr, result, data)->
     users = JSON.parse(xhr.responseText)
-    text = users.join(' ')
-    $('#data_users').val(text)
+    text = users.join(' ') + ' '
+    $('#data_users').val($('#data_users').val() + text)
