@@ -35,7 +35,7 @@ module Twitter
     users.each do |user|
       user.gsub('@', '')
       begin
-        result = $twitter.follow!(user) # unless followings.include?(user)
+        $twitter.follow!(user) # unless followings.include?(user)
       rescue Exception => e
         logger.error "On #{user || 'Nil user'} raised #{e.message}"
       end
