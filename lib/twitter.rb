@@ -34,11 +34,13 @@ module Twitter
     users = [users] unless users.is_a? Array
     users.each do |user|
       user.gsub('@', '')
-      unless user.blank? or user==nil begin
-        result = $twitter.follow!(user) # unless followings.include?(user)
-        Rails.logger.info "On #{user || 'Nil user'} ok with result #{result}"
-      rescue Exception => e
-        Rails.logger.error "On #{user || 'Nil user'} raised #{e.message}"
+      unless user.blank? or user==nil
+        begin
+          result = $twitter.follow!(user) # unless followings.include?(user)
+          Rails.logger.info "On #{user || 'Nil user'} ok with result #{result}"
+        rescue Exception => e
+          Rails.logger.error "On #{user || 'Nil user'} raised #{e.message}"
+        end
       end
     end
   end
