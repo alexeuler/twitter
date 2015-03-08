@@ -18,3 +18,7 @@ $ ->
     newText = users.join(' ') + ' '
     oldText = $('#data_users').val()
     $('#data_users').val(oldText + newText)
+    $('#data_users').trigger 'change'
+
+  $('body').on 'ajax:complete', '.follow', (e, xhr, result, data)->
+    alert 'Follow done'
