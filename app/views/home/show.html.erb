@@ -8,10 +8,21 @@
 <% end %>
 
 
-<%= form_for :data, url: '/api/parse', :html => {:class => 'parse',  :multipart => true}, :remote => true do |f| %>
+<%= form_for :data, url: '/api/parse_flitter', :html => {:class => 'parse',  :multipart => true}, :remote => true do |f| %>
     <h1>Populate from flitter</h1>
     <%= f.file_field :file %>
     <div class="actions">
       <%= f.submit 'Populate' %>
     </div>
+<% end %>
+
+<%= form_for :data, url: '/api/follow_followers', remote: true, :html => {:class => 'follow', :'data-type' => 'json'} do |f| %>
+    <h1>Follow followers of</h1>
+    <%= f.text_field :user%>
+    <br/>
+    <p>From (# of follower):</p>
+    <%= f.text_field :from%>
+    <br/>
+    <%= f.submit 'Follow' %>
+    <br/>
 <% end %>

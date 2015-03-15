@@ -28,18 +28,41 @@ module Twitter
     result
   end
 
+  def self.follow_followers(user,from)
+    user = user.gsub('@', '')
+    from||=0
+    ids=[]
+    begin
+      ids = $twitter.follower_ids(user)
+    rescue Exception => e
+      Rails.logger.error "Follow_followers on #{user || 'Nil user'} raised #{e.message}"
+    end
+    ids = ids.to_a
+    ids = ids[from..-1]
+    limit = [ids.count, 1000].min - 1
+    ids = ids[0..limit]
+    ids.each do |user|
+      begin
+        result = $twitter.follow!(user)
+        Rails.logger.info "Follow_followers on #{user || 'Nil user'} ok with result #{result}"
+      rescue Exception => e
+        Rails.logger.error "Follow_followers on #{user || 'Nil user'} raised #{e.message}"
+      end
+    end
+  end
+
   def self.follow(users)
     # followings = get_followings
     users = users.split(' ') if users.is_a? String
     users = [users] unless users.is_a? Array
     users.each do |user|
-      user.gsub('@', '')
+      user.gsub!('@', '')
       unless user.blank? or user==nil
         begin
           result = $twitter.follow!(user) # unless followings.include?(user)
-          Rails.logger.info "On #{user || 'Nil user'} ok with result #{result}"
+          Rails.logger.info "Follow on #{user || 'Nil user'} ok with result #{result}"
         rescue Exception => e
-          Rails.logger.error "On #{user || 'Nil user'} raised #{e.message}"
+          Rails.logger.error "Follow on #{user || 'Nil user'} raised #{e.message}"
         end
       end
     end

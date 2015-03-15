@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   post 'api/follow'
-  post 'api/parse'
+  post 'api/follow_followers'
+  post 'api/parse_flitter'
   get 'home/show'
 
   # The priority is based upon order of creation: first created -> highest priority.
