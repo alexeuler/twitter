@@ -29,6 +29,7 @@ module Twitter
   end
 
   def self.follow_followers(user,from)
+    follow_limit=1000
     user = user.gsub('@', '')
     from||=0
     ids=[]
@@ -37,17 +38,16 @@ module Twitter
     rescue Exception => e
       Rails.logger.error "Follow_followers on #{user || 'Nil user'} raised #{e.message}"
     end
-    ids = ids.to_a
-    ids = ids[from..-1]
-    limit = [ids.count, 1000].min - 1
-    ids = ids[0..limit]
-    ids.each do |user|
+    follow_count=0
+    ids.each(from) do |id|
       begin
-        result = $twitter.follow!(user)
-        Rails.logger.info "Follow_followers on #{user || 'Nil user'} ok with result #{result}"
+        result = $twitter.follow!(id)
+        Rails.logger.info "Follow_followers on #{id || 'Nil user'} ok with result #{result}"
       rescue Exception => e
-        Rails.logger.error "Follow_followers on #{user || 'Nil user'} raised #{e.message}"
+        Rails.logger.error "Follow_followers on #{id || 'Nil user'} raised #{e.message}"
       end
+      follow_count+=1
+      break if follow_count>follow_limit
     end
   end
 
